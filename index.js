@@ -1,9 +1,9 @@
-var cls = require('continuation-local-storage');
-var createNamespace = cls.createNamespace;
-var mtMongooseSessionSet = createNamespace('mt-mongoose-session');
 var defaultDb = null;
 var systemDb = null;
-var getNamespace = cls.getNamespace;
+var storage = require('node-persist');
+
+storage.initSync();
+
 var MTMongoose = function () {
 };
 //Default tenant db which is used to perform useDB operation.
@@ -17,15 +17,12 @@ MTMongoose.prototype.setGlobalDB = function (_systemDb) {
 };
 //Method used to set
 MTMongoose.prototype.setTenantId = function (req, res, next) {
-    mtMongooseSessionSet.run(function () {
-        mtMongooseSessionSet.set("tenant_id", req._tid);
-        next();
-    });
+    storage.setItemSync('tenant_id', req._tid);
+    next();
 };
 
 MTMongoose.prototype.getTenantId = function () {
-    var mtMongooseSessionGet = getNamespace('mt-mongoose-session');
-    var tenant_id = mtMongooseSessionGet.get("tenant_id");
+    var tenant_id = storage.getItemSync('tenant_id');
     return tenant_id;
 };
 
