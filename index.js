@@ -1,4 +1,4 @@
-var cls = require('continuation-local-storage');
+var cls = require('cls-hooked');
 var createNamespace = cls.createNamespace;
 var mtMongooseSessionSet = createNamespace('mt-mongoose-session');
 var defaultDb = null;
