@@ -6,14 +6,9 @@
   ],
   "author": "BabuSrithar",
   "dependencies": {
-<<<<<<< HEAD
-    "node-persist": "^2.1.0",
-    "mongoose": "^4.7.6"
-=======
     "cls-hooked": "^4.2.2",
     "continuation-local-storage": "3.1.7",
     "mongoose": "4.4.14"
->>>>>>> temp
   },
   "devDependencies": {},
   "main": "index.js",
