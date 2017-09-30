@@ -1,3 +1,6 @@
+var cls = require('cls-hooked');
+var createNamespace = cls.createNamespace;
+var mtMongooseSessionSet = createNamespace('mt-mongoose-session');
 var defaultDb = null;
 var systemDb = null;
 var storage = require('node-persist');
