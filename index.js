@@ -31,6 +31,9 @@ MTMongoose.prototype.getTenantId = function () {
 
 MTMongoose.prototype.getMTModel = function (schemaObj) {
     var tenantDBId = this.getTenantId();
+    if (!tenantDBId) {
+        throw new Error('mt-mongoose: no tenantDBId provided.');
+    }
     var tenantDB = defaultDb.useDb(tenantDBId ? tenantDBId : "test");
     if (tenantDB) {
         return tenantDB.model(schemaObj.modelName ? schemaObj.modelName : schemaObj.name, schemaObj.schema)
